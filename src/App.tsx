@@ -183,7 +183,7 @@ function TableView({ items, onOpen }: { items: Product[]; onOpen: (p: Product) =
             <Th>Producto</Th>
             <Th>Categoría</Th>
             <Th style={{ textAlign: "right" }}>Precio</Th>
-            <Th></Th>
+            <Th> </Th>
           </tr>
         </thead>
         <tbody>
