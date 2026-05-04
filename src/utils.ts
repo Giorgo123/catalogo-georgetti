@@ -9,23 +9,31 @@ export function formatARS(value: number): string {
   }).format(value);
 }
 
+function isAbsoluteUrl(url: string): boolean {
+  return /^https?:\/\//i.test(url);
+}
+
 export function productImageUrl(p: Product): string {
   // 1) Si trae image explícito, úsalo
-  if (p.image && p.image.trim()) return p.image.trim();
+  if (p.image && p.image.trim()) {
+    const raw = p.image.trim();
+    if (isAbsoluteUrl(raw) || raw.startsWith("/")) return raw;
+    return `/images/${raw}`;
+  }
 
-  // 2) Convención por código (vos subís public/images/<COD>.jpg|png|webp)
-  // No podemos detectar extensión al vuelo sin back, así que probamos .jpg primero.
-  // Si falla, el <img> cae al placeholder via onError.
-  return `/images/${p.code}.jpg`;
+  // 2) Convención por código: subís `public/images/<COD>.webp` (recomendado)
+  // Si no existe, el <img> cae al placeholder via onError.
+  return `/images/${p.code}.webp`;
 }
 
 export function categoryPlaceholder(cat: string): string {
   const key = cat.toLowerCase();
-  if (key.includes("soga")) return "/placeholders/sogas.svg";
-  if (key.includes("mosquet")) return "/placeholders/mosquetones.svg";
-  if (key.includes("argoll")) return "/placeholders/argollas.svg";
-  if (key.includes("cadena")) return "/placeholders/cadenas.svg";
-  if (key.includes("torniq")) return "/placeholders/torniquetas.svg";
-  if (key.includes("grill")) return "/placeholders/grilletes.svg";
-  return "/placeholders/otros.svg";
+  // Nota: estos nombres tienen que coincidir con `public/placeholders/*`
+  if (key.includes("mosq")) return "/placeholders/mosqueton.webp";
+  if (key.includes("arg")) return "/placeholders/argolla.webp";
+  if (key.includes("cad")) return "/placeholders/cadena.webp";
+  if (key.includes("torn")) return "/placeholders/torniqueta.webp";
+  if (key.includes("soga")) return "/placeholders/soga.webp";
+  if (key.includes("coll")) return "/placeholders/collar.webp";
+  return "/placeholders/otros.webp";
 }
