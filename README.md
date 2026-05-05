@@ -18,8 +18,8 @@ npm run preview
 ## Datos
 - `src/data/products.json` (generado desde el Excel)
 - Para imágenes por producto:
-  - poner archivos en `public/images/<COD>.jpg` (o .png / .webp)
-  - ejemplo: `public/images/AH10.jpg`
+  - poner archivos en `public/images/<COD>.webp` (recomendado)
+  - ejemplo: `public/images/AH10.webp`
 - Si no hay imagen, se usa placeholder por categoría.
 
 ## WhatsApp
