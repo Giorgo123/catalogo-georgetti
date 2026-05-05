@@ -35,5 +35,5 @@ export function categoryPlaceholder(cat: string): string {
   if (key.includes("torn")) return "/placeholders/torniqueta.webp";
   if (key.includes("soga")) return "/placeholders/soga.webp";
   if (key.includes("coll")) return "/placeholders/collar.webp";
-  return "/placeholders/otros.webp";
+  return "/placeholders/otros.svg";
 }
